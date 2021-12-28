@@ -16,3 +16,6 @@ table tr td input{
     font-weight: bold;
     font-size: xx-large;
 }
+.dropdown-menu{
+    min-width: 50px;
+}
