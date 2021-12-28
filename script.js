@@ -3,11 +3,11 @@ let answer = document.getElementById("inptext");
 let calculate = (number) => {
     answer.value += number;
 };
-
+// equal operator
 let Answer = () => {
     answer.value = eval(answer.value);
 }
-
+//clear function
 function clr(){
     answer.value= "";
 }
