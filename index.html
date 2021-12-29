@@ -10,16 +10,17 @@
 </head>
 <body >
     <div>
-        <table class="table table-bordered text-center">
+        <table class="table table-bordered text-center box">
             <tr>
-                <td colspan="5">
+                <td colspan="5" class="box ans">
+                    <small class="mx" id="sm"></small>
                     <input type="text" id="inptext" placeholder="0">
                 </td>
             </tr>
             <tr>
-                <td class="fw-bold" colspan="1">DEG</td>
-                <td class="fw-bold" colspan="1">F-E</td>
-                <td colspan="3"></td>
+                <td colspan="1"><button class="border-0 fw-bold bg-light" onclick="Deg()">DEG</button></td>
+                <td colspan="1"><button class="border-0 fw-bold bg-light" onclick="f_e()">F-E</button></td>
+              
             </tr>
             <tr>
                 <td class="text-muted">
@@ -41,79 +42,90 @@
             <tr>
                 <td class="dropdown" colspan="3"> 
                     <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false bg-light">
-                        <img src="./images/trigonometry.png" width="15px"> <small>Trigonometry</small>
+                        <img src="./images/R.png" width="16px"> <small>Trigonometry</small>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" href="#" onclick="calculate('sin')">sin</a></li>
-                      <li><a class="dropdown-item" href="#" onclick="calculate('cos')">cos</a></li>
-                      <li><a class="dropdown-item" href="#" onclick="calculate('tan')">tan</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="sin()">sin</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="cos()">cos</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="tan()">tan</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="asin()">asin</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="acos()">acos</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="atan()">atan</a></li>
                     </ul>
                 </td>
                 <td class="dropdown" colspan="2">
                     <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false bg-light">
-                        <img src="./images/f.png" width="15px"> <small>function</small>
+                        <img src="./images/f.png" width="15px"><small>function</small>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" href="#" onclick="calculate('floor')">floor</a></li>
-                      <li><a class="dropdown-item" href="#" onclick="calculate('ceil')">ceil</a></li>
-                      <li><a class="dropdown-item" href="#" onclick="calculate('round')">round</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="floor()">floor</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="ceil()">ceil</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="random()">random</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="trunc()">trunc</a></li>
                     </ul>
-                  </td>
-            </tr>
-            <tr>
-                <td >
-                    <button class="border-0 fw-bold bg-light">2<sup>nd</sup></button> 
-                </td>
-                <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate(3.14)"><img src="./images/pi.png" width="13px"></button> 
-                </td>
-                <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate(2.718)">e</button> 
-                </td>
-                <td >
-                    <button class="border-0 fw-bold bg-light" onclick="clr()">C</button> 
-                </td>
-                <td >
-                    <button class="border-0 fw-bold bg-light" onclick="answer.Input.value = answer.value.slice(0, -1)"><img src="./images/backspace-solid.svg" width="20px"></button> 
                 </td>
             </tr>
             <tr>
-                <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate('^2')">x<sup>2</sup></button> 
+                <td class="dropdown" >
+                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false bg-light">
+                      2<sup>nd</sup>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#" onclick="xpow3()">x<sup>3</sup></a></li>
+                      <li><a class="dropdown-item" href="#" onclick="powof2x()">2<sup>x</sup></a></li>
+                      <li><a class="dropdown-item" href="#" onclick="cbrt()">∛</a></li>
+                    </ul>
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light">1/x</button> 
+                    <button class="border-0  bg-light" onclick="calculate(3.14)">Π</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate('|')">| x |</button> 
+                    <button class="border-0 bg-light" onclick="calculate(2.718)">e</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate('exp')">exp</button> 
+                    <button class="border-0  bg-light" onclick="clr()">C</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate('%')">mod</button> 
+                    <button class="border-0 bg-light" onclick="del()"><img src="./images/b.svg" width="20px"></button> 
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    <button class="border-0  bg-light" onclick="square()">x<sup>2</sup></button> 
+                </td>
+                <td >
+                    <button class="border-0  bg-light" onclick="reciprocal()">1/x</button> 
+                </td>
+                <td >
+                    <button class="border-0  bg-light" onclick="abs()">| x |</button> 
+                </td>
+                <td >
+                    <button class="border-0  bg-light" onclick="exp()">exp</button> 
+                </td>
+                <td >
+                    <button class="border-0  bg-light" onclick="calculate('%')">mod</button> 
                 </td>
             </tr>  
             <tr>
                 <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate('√')"><img src="./images/square-root-of-x-mathematical-signs.png" width="20px"></button> 
+                    <button class="border-0  bg-light" onclick="sqrt()">√</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate('(')">(</button> 
+                    <button class="border-0  bg-light" onclick="calculate('(')">(</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate(')')">)</button> 
+                    <button class="border-0  bg-light" onclick="calculate(')')">)</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light">n!</button> 
+                    <button class="border-0  bg-light" onclick="fact()">n!</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate('/')"><img src="./images/divide.png" width="15px"></button> 
+                    <button class="border-0  bg-light" onclick="calculate('/')">&#247;</button> 
                 </td>
             </tr>  
             <tr>
                 <td >
-                    <button class="border-0 fw-bold bg-light">x<sup>y</sup></button> 
+                    <button class="border-0  bg-light" onclick="calculate('^')">x<sup>y</sup></button> 
                 </td>
                 <td >
                     <button class="border-0 fw-bold bg-light" onclick="calculate(7)">7</button> 
@@ -125,12 +137,12 @@
                     <button class="border-0 fw-bold bg-light" onclick="calculate(9)">9</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light"onclick="calculate('*')">X</button> 
+                    <button class="border-0  bg-light"onclick="calculate('*')">X</button> 
                 </td>
             </tr>     
             <tr>
                 <td >
-                    <button class="border-0 fw-bold bg-light">10<sup>x</sup></button> 
+                    <button class="border-0  bg-light" onclick="powx()">10<sup>x</sup></button> 
                 </td>
                 <td >
                     <button class="border-0 fw-bold bg-light" onclick="calculate(4)">4</button> 
@@ -142,12 +154,12 @@
                     <button class="border-0 fw-bold bg-light" onclick="calculate(6)">6</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate('-')">-</button> 
+                    <button class="border-0  bg-light" onclick="calculate('-')">-</button> 
                 </td>
             </tr>   
             <tr>
                 <td >
-                    <button class="border-0 fw-bold bg-light">log</button> 
+                    <button class="border-0  bg-light" onclick="log()">log</button> 
                 </td>
                 <td >
                     <button class="border-0 fw-bold bg-light" onclick="calculate(1)">1</button> 
@@ -159,24 +171,24 @@
                     <button class="border-0 fw-bold bg-light" onclick="calculate(3)">3</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light" onclick="calculate('+')">+</button> 
+                    <button class="border-0 bg-light" onclick="calculate('+')">+</button> 
                 </td>
             </tr>  
              <tr>
                 <td >
-                    <button class="border-0 fw-bold bg-light">ln</button> 
+                    <button class="border-0  bg-light" onclick="ln()">ln</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light">+/-</button> 
+                    <button class="border-0  bg-light" onclick="pm()">+/-</button> 
                 </td>
                 <td >
                     <button class="border-0 fw-bold bg-light" onclick="calculate(0)">0</button> 
                 </td>
                 <td >
-                    <button class="border-0 fw-bold bg-light">.</button> 
+                    <button class="border-0  bg-light" onclick="calculate('.')">.</button> 
                 </td>
-                <td class="bg-primary">
-                    <button class="border-0 fw-bold bg-primary " onclick="Answer()">=</button> 
+                <td class="equal">
+                    <button class="border-0 bg-light" onclick="Answer()">=</button> 
                 </td>
             </tr>
         </table>

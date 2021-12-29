@@ -1,13 +1,125 @@
 let answer = document.getElementById("inptext");
-//taking input of numbers 1 to 0 
+//taking input and showing the numbers 1-10 and operators such as pi , e and mod 
 let calculate = (number) => {
     answer.value += number;
 };
 // equal operator
 let Answer = () => {
-    answer.value = eval(answer.value);
+    //condition checks the value contains ^ if yes then it will perform x^y
+    if(answer.value.includes("^")){
+        temp = answer.value;
+        x = temp.split("^")[0];
+        y = temp.substring(temp.indexOf("^") + 1);
+       answer.value = Math.pow(x,y);
+   }
+    document.getElementById("sm").innerHTML=answer.value;
+    answer.value = eval(answer.value);// for calculating basic math operations
 }
 //clear function
-function clr(){
+let clr = () => 
+{ 
+    document.getElementById("sm").innerHTML="";
     answer.value= "";
+}
+
+//backspace / delete function
+let del = () => answer.value = answer.value.slice(0, -1)
+
+//square root function
+let sqrt = () => answer.value = Math.sqrt(answer.value);
+    
+//factorial function
+let  fact = () => {
+    n = answer.value;
+    facto = 1;
+        if(n == 0 || n == 1){
+            facto = 1;
+        }
+        else{
+            for( i = n; i >= 1; i--)
+            {
+            facto = facto * i;
+            }
+        }
+    answer.value = facto;
+}
+
+
+//function radian to degree
+let Deg = () => {
+    rad = answer.value;
+    deg = (rad*180)/3.14;
+    answer.value = deg;
+}
+
+//function Farenhiet to celcius
+let f_e = () => {
+    cel = answer.value;
+    far = cel * 1.8 + 32;
+    answer.value = far;
+}
+
+//function square
+let square = () => answer.value = Math.pow(answer.value , 2);
+
+//function logarithm
+let log = () => answer.value = Math.log10(answer.value);
+
+//function ln
+let ln = () => answer.value = Math.log(answer.value);
+
+//function 10pow x
+let powx = () => answer.value = Math.pow(10 , answer.value);
+
+//function exp
+let exp = () => answer.value = Math.exp(answer.value);
+
+// function sin
+let sin = () => answer.value = Math.sin(answer.value);
+
+// function tan
+let tan = () => answer.value = Math.tan(answer.value);
+
+// function cos
+let cos = () => answer.value = Math.cos(answer.value);
+
+// function asin
+let asin = () => answer.value = Math.asin(answer.value);
+
+// function acos
+let acos = () => answer.value = Math.acos(answer.value);
+
+// function atan
+let atan = () => answer.value = Math.atan(answer.value);
+
+// function floor
+let floor = () => answer.value = Math.floor(answer.value);
+
+// function ceil
+let ceil = () => answer.value = Math.ceil(answer.value);
+
+//function random
+let random = () => answer.value = Math.random(answer.value);
+
+//function trunc
+let trunc = () => answer.value = Math.trunc(answer.value);
+
+//function abs=>| x |
+let abs = () => answer.value = Math.abs(answer.value);
+
+//function reciprocal
+let reciprocal = () => answer.value = 1/answer.value;
+
+// function x^3
+let xpow3 = () => answer.value = Math.pow(answer.value , 3);
+
+// function 2^x
+let powof2x = () => answer.value = Math.pow(2 , answer.value);
+
+//function of cuberoot
+let cbrt = () => answer.value = Math.cbrt(answer.value);
+
+// function of +/-
+let pm =  () => { 
+    answer.value = -answer.value;
 }
