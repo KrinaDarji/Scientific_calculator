@@ -1,5 +1,9 @@
 let answer = document.getElementById("inptext");
-//taking input and showing the numbers 1-10 and operators such as pi , e and mod 
+let list = document.getElementById("memory-list");
+let list1 = document.getElementById("history-list");
+let memoryRegister = [];
+let HistoryRegister = [];
+//taking input and showing the numbers 1-10 and operators such as pi , e , mod etc
 let calculate = (number) => {
     answer.value += number;
 };
@@ -12,8 +16,18 @@ let Answer = () => {
         y = temp.substring(temp.indexOf("^") + 1);
        answer.value = Math.pow(x,y);
    }
-    document.getElementById("sm").innerHTML=answer.value;
+    numberbefore = answer.value; 
+    document.getElementById("sm").innerHTML=answer.value; // displaying operations 
     answer.value = eval(answer.value);// for calculating basic math operations
+    numberafter = answer.value;
+    num = numberbefore + '=' + numberafter;
+    if(Number.isNaN(numberafter))return; // checks nan if yes then returned else will considered as number 
+    HistoryRegister.push(num); //pushes the elements in array
+    list1.innerHTML='';
+    HistoryRegister.forEach((element) => {
+        list1.innerHTML += '<li>' + element + '</li>'; //prints element history block 
+    });
+
 }
 //clear function
 let clr = () => 
@@ -23,7 +37,7 @@ let clr = () =>
 }
 
 //backspace / delete function
-let del = () => answer.value = answer.value.slice(0, -1)
+let del = () => answer.value = answer.value.slice(0, -1);
 
 //square root function
 let sqrt = () => answer.value = Math.sqrt(answer.value);
@@ -120,6 +134,77 @@ let powof2x = () => answer.value = Math.pow(2 , answer.value);
 let cbrt = () => answer.value = Math.cbrt(answer.value);
 
 // function of +/-
-let pm =  () => { 
-    answer.value = -answer.value;
+let pm =  () =>     answer.value = -answer.value;
+
+//function for memory button to toggle and show the memory
+let Memory = () => {
+    div = document.getElementsByClassName('show').item(0);
+    if(div.style.display == 'block'){
+        div.style.display = 'none';
+    }
+    else{
+        div.style.display = 'block';
+    }
+} 
+//function for history button to toggle and show the history
+let history = () => {
+    div = document.getElementsByClassName('show1').item(0);
+    if(div.style.display == 'block'){
+        div.style.display = 'none';
+    }
+    else{
+        div.style.display = 'block';
+    }
+} 
+// function memory save
+let MemorySave = () =>{
+    num = answer.value; 
+    if(Number.isNaN(num))return; // checks nan if yes then returned else will considered as number 
+    memoryRegister.push(num); //pushes the elements in array
+    list.innerHTML='';
+    memoryRegister.forEach((element) => {
+        list.innerHTML += '<li>' + element + '</li>'; //prints element in memory block 
+    });
 }
+
+//function memory plus
+let memoryplus = () => {
+    num = answer.value;
+    if(Number.isNaN(num)) return; // checks nan if yes then returned else will considered as number 
+    lastvalue = list.lastChild.innerHTML; // takes last element of list and stores in lastvalue
+    ans = parseInt(lastvalue) + parseInt(num); //adds the last item in memory and the number
+    memoryRegister.pop(lastvalue);//pops out the lastvalue in array
+    memoryRegister.push(ans);//pushes the elements in array
+    list.innerHTML='';
+    memoryRegister.forEach((element) => {
+        list.innerHTML += '<li>' + element + '</li>'; //prints element in memory block 
+    });
+}
+
+//function memory minus
+let memoryminus = () => {
+    num = answer.value;
+    if(Number.isNaN(num)) return; // checks  nan if yes then returned else will considered as number
+    lastvalue = list.lastChild.innerHTML;  // takes last element of list and stores in lastvalue
+    ans = parseInt(lastvalue) - parseInt(num); //substracts the last item in memory and the number
+    memoryRegister.pop(lastvalue);//pops out the lastvalue in array
+    memoryRegister.push(ans);//pushes the elements in array
+    list.innerHTML='';
+    memoryRegister.forEach((element) => {
+        list.innerHTML += '<li>' + element + '</li>'; //prints element in memory block 
+    });
+}
+
+//function memory recall 
+let memoryrecall = () => {
+    answer.value = list.lastChild.innerHTML; //prints last element in list on display
+}
+
+//function memory clear
+let memoryclear = () => {
+    list.innerHTML='';
+    memoryRegister.forEach((element)=>{
+    list.innerHTML = ''; //clearing the list 
+  })
+}
+
