@@ -204,7 +204,9 @@ let memoryrecall = () => {
 let memoryclear = () => {
     list.innerHTML='';
     memoryRegister.forEach((element)=>{
-    list.innerHTML = ''; //clearing the list 
+    while(memoryRegister.length){
+        memoryRegister.pop();
+    }
   })
 }
 
