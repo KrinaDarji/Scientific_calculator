@@ -8,7 +8,7 @@
     <title>Scientific Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body >
+<body onkeypress="myFunction(event)">
     <div class="togg">
         <div>
              <!-- history list shown when history button clicked-->
@@ -33,7 +33,7 @@
                     <button class="border-0 mem" onclick="Memory()">Memory</button>
                     <button class="border-0 mem mx-2" onclick="history()">History</button>
                     <small class="mx" id="sm"></small> <!-- operations displayed ontop of div -->
-                    <input type="text" id="inptext" placeholder="0">
+                    <input type="text" id="inptext" placeholder="0" disabled>
                 </td>
             </tr>
             <tr>

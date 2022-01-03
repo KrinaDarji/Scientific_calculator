@@ -3,9 +3,38 @@ let list = document.getElementById("memory-list");
 let list1 = document.getElementById("history-list");
 let memoryRegister = [];
 let HistoryRegister = [];
-//taking input and showing the numbers 1-10 and operators such as pi , e , mod etc
+//taking input and showing the numbers 1-10 and operators such as pi , e , mod etc from button
 let calculate = (number) => {
-    answer.value += number;
+    if (answer.value === "") {
+        if(isNaN(number)){
+            if(number=="-" || number=="("){
+                answer.value += number;
+            }
+         }else{
+            answer.value += number;
+        }
+    }
+    else{
+       
+        ch = answer.value;
+        ch=String(ch);
+        ch=ch.slice(-1);
+        if(isNaN(ch)){
+            if(isNaN(number)){
+                calch=answer.value;
+                calch=calch.substring(0, calch.length - 1);
+                console.log("replace",calch);
+                answer.value = calch;
+                answer.value += number;
+                console.log(calch);
+             }else{
+                answer.value += number;
+             }
+         } 
+         else{
+            answer.value += number;
+         }
+    }
 };
 // equal operator
 let Answer = () => {
@@ -16,22 +45,36 @@ let Answer = () => {
         y = temp.substring(temp.indexOf("^") + 1);
        answer.value = Math.pow(x,y);
    }
-    numberbefore = answer.value; 
-    document.getElementById("sm").innerHTML=answer.value; // displaying operations 
-    answer.value = eval(answer.value);// for calculating basic math operations
+        ansch = answer.value;
+        console.log("ansch",ansch);
+        ansch=String(ansch);
+        anschnew=ansch.slice(-1);
+        console.log("anschnew",anschnew);
+        if(isNaN(anschnew)){
+            ansch=ansch.substring(0, ansch.length - 1);
+            numberbefore=ansch
+            console.log("numberbefore",numberbefore);
+        }
+        else{
+             numberbefore = answer.value;
+        }
+
+    // numberbefore = answer.value;
+    document.getElementById("sm").innerHTML=numberbefore; // displaying operations
+    answer.value = eval(numberbefore);// for calculating basic math operations
     numberafter = answer.value;
     num = numberbefore + '=' + numberafter;
-    if(Number.isNaN(numberafter))return; // checks nan if yes then returned else will considered as number 
+    if(Number.isNaN(numberafter))return; // checks nan if yes then returned else will considered as number
     HistoryRegister.push(num); //pushes the elements in array
     list1.innerHTML='';
     HistoryRegister.forEach((element) => {
-        list1.innerHTML += '<li>' + element + '</li>'; //prints element history block 
+        list1.innerHTML += '<li>' + element + '</li>'; //prints element history block
     });
 
 }
 //clear function
-let clr = () => 
-{ 
+let clr = () =>
+{
     document.getElementById("sm").innerHTML="";
     answer.value= "";
 }
@@ -41,7 +84,7 @@ let del = () => answer.value = answer.value.slice(0, -1);
 
 //square root function
 let sqrt = () => answer.value = Math.sqrt(answer.value);
-    
+   
 //factorial function
 let  fact = () => {
     n = answer.value;
@@ -141,11 +184,12 @@ let Memory = () => {
     div = document.getElementsByClassName('show').item(0);
     if(div.style.display == 'block'){
         div.style.display = 'none';
+       
     }
     else{
         div.style.display = 'block';
     }
-} 
+}
 //function for history button to toggle and show the history
 let history = () => {
     div = document.getElementsByClassName('show1').item(0);
@@ -155,29 +199,29 @@ let history = () => {
     else{
         div.style.display = 'block';
     }
-} 
+}
 // function memory save
 let MemorySave = () =>{
-    num = answer.value; 
-    if(Number.isNaN(num))return; // checks nan if yes then returned else will considered as number 
+    num = answer.value;
+    if(Number.isNaN(num))return; // checks nan if yes then returned else will considered as number
     memoryRegister.push(num); //pushes the elements in array
     list.innerHTML='';
     memoryRegister.forEach((element) => {
-        list.innerHTML += '<li>' + element + '</li>'; //prints element in memory block 
+        list.innerHTML += '<li>' + element + '</li>'; //prints element in memory block
     });
 }
 
 //function memory plus
 let memoryplus = () => {
     num = answer.value;
-    if(Number.isNaN(num)) return; // checks nan if yes then returned else will considered as number 
+    if(Number.isNaN(num)) return; // checks nan if yes then returned else will considered as number
     lastvalue = list.lastChild.innerHTML; // takes last element of list and stores in lastvalue
     ans = parseInt(lastvalue) + parseInt(num); //adds the last item in memory and the number
     memoryRegister.pop(lastvalue);//pops out the lastvalue in array
     memoryRegister.push(ans);//pushes the elements in array
     list.innerHTML='';
     memoryRegister.forEach((element) => {
-        list.innerHTML += '<li>' + element + '</li>'; //prints element in memory block 
+        list.innerHTML += '<li>' + element + '</li>'; //prints element in memory block
     });
 }
 
@@ -191,11 +235,11 @@ let memoryminus = () => {
     memoryRegister.push(ans);//pushes the elements in array
     list.innerHTML='';
     memoryRegister.forEach((element) => {
-        list.innerHTML += '<li>' + element + '</li>'; //prints element in memory block 
+        list.innerHTML += '<li>' + element + '</li>'; //prints element in memory block
     });
 }
 
-//function memory recall 
+//function memory recall
 let memoryrecall = () => {
     answer.value = list.lastChild.innerHTML; //prints last element in list on display
 }
@@ -209,4 +253,21 @@ let memoryclear = () => {
     }
   })
 }
-
+//function for taking input from keyboard
+let myFunction = (event) => {
+    unicode= event.which;
+    console.log("event",event)
+    console.log(unicode);
+    if (unicode>=48 && unicode <=57 || unicode==94 || unicode==40 || unicode==41  || unicode==42 || unicode==43  || unicode==45 || unicode==47  ){
+    console.log("event1",event)
+    calculate(event.key);
+    }
+    else{
+    }
+    if(unicode==13){
+        Answer();
+    }
+    if (unicode == 46 ) {
+        del();
+    } 
+}
