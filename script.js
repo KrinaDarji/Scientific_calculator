@@ -59,7 +59,7 @@ let Answer = () => {
              numberbefore = answer.value;
         }
 
-    // numberbefore = answer.value;
+ 
     document.getElementById("sm").innerHTML=numberbefore; // displaying operations
     answer.value = eval(numberbefore);// for calculating basic math operations
     numberafter = answer.value;
